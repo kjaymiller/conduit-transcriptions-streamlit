@@ -33,6 +33,6 @@ with streamlit.sidebar:
 with episode_header_content:
     streamlit.header(episode["title"] + f" [:link:]({episode['url']})")
     streamlit.text(episode["pub_date"])
-    streamlit.caption(f"{episode["description"]}")
+    streamlit.caption(f'{episode["description"]}')
 
 transcription_container.write(episode.content)
