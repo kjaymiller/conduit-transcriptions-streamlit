@@ -1,4 +1,2 @@
-typer
-python-slugify
+streamlit
 python-frontmatter
-gazpacho
