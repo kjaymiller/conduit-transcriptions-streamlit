@@ -1,2 +1,5 @@
-streamlit
+arrow
+python-dotenv
 python-frontmatter
+streamlit
+sqlalchemy

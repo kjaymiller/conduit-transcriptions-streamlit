@@ -2,6 +2,7 @@ import streamlit
 import pathlib
 import frontmatter
 
+from data import all_episodes
 
 streamlit.title("Conduit Transcriptions")
 
@@ -21,18 +22,18 @@ with streamlit.sidebar:
     episode = streamlit.radio(
         "Select an episode",
         sorted(
-            [frontmatter.loads(path.read_text()) for path in pathlib.Path("transcripts").iterdir()],
-            key=lambda episode: int(episode["title"].split(": ")[0]),
+            [episode for episode in all_episodes()],
+            key=lambda episode: int(episode.title.split(": ")[0]),
             reverse=True,
         ),
-        format_func=lambda episode: episode["title"],
+        format_func=lambda episode: episode.title,
         on_change=set_transcription_data,
     )
 
 
 with episode_header_content:
-    streamlit.header(episode["title"] + f" [:link:]({episode['url']})")
-    streamlit.text(episode["pub_date"])
-    streamlit.caption(f'{episode["description"]}')
+    streamlit.header(episode.title + f" [:link:]({episode.url})")
+    streamlit.text(episode.date.strftime("%B %d, %Y"))
+    streamlit.caption(f'{episode.description}')
 
 transcription_container.write(episode.content)
