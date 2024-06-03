@@ -1,8 +1,6 @@
 import streamlit
-import pathlib
-import frontmatter
 
-from data import all_episodes
+from db.pg.crud import all_episodes
 
 streamlit.title("Conduit Transcriptions")
 
